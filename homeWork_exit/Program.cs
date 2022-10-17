@@ -15,9 +15,9 @@ namespace homeWork_exit
             const string CommandHeal = "2";
             const string CommandExit = "3";
 
-            int hpUser = 100;
-            int damageUser = 10;
-            int healUser = 10;
+            int hpPlayer = 100;
+            int damagePalyer = 10;
+            int healPalyer = 10;
             int hpDragon = 1000;
             int damageDragon = 5;
             string inputUserText;
@@ -25,7 +25,7 @@ namespace homeWork_exit
 
             Console.WriteLine("Спустившись в подземелье вы видите дракона. Ваши действия: ");
             Console.WriteLine($"{CommandDamage} - нанести урон даракону равный {damageDragon}\n" +
-                $"{CommandHeal} - излечиться на {healUser} hp\n" +
+                $"{CommandHeal} - излечиться на {healPalyer} hp\n" +
                 $"{CommandExit} - убежать");
 
             while (hpDragon >= 0) 
@@ -35,12 +35,12 @@ namespace homeWork_exit
                 switch (inputUserText) 
                 {
                     case CommandDamage:
-                        hpDragon -= damageUser;
-                        Console.WriteLine("Вы нанесли "+ damageUser+ " теперь у дракона  "+ hpDragon + "hp");
+                        hpDragon -= damagePalyer;
+                        Console.WriteLine($"Вы нанесли {damagePalyer} теперь у дракона {hpDragon} hp");
                         break;
                     case CommandHeal:
-                        hpUser += healUser;
-                        Console.WriteLine("Вы исцелили себя на " + healUser + " теперь у вас " + hpUser + " hp");
+                        hpPlayer += healPalyer;
+                        Console.WriteLine($"Вы исцелили себя на { healPalyer} теперь у вас {hpPlayer} hp");
                         break;
                     case CommandExit:
                         Console.WriteLine("Вы трус");
@@ -48,8 +48,8 @@ namespace homeWork_exit
                         break;
                     default:
                         Console.WriteLine("Вы пытаетесь что-то сделать, но поитогу ударяете сами себя");
-                        hpUser -= damageUser;
-                        Console.WriteLine($"Теперь у вас " +hpUser+ " hp");
+                        hpPlayer -= damagePalyer;
+                        Console.WriteLine($"Теперь у вас {hpPlayer} hp");
                         break;
                 }
 
@@ -59,14 +59,14 @@ namespace homeWork_exit
                     break;
                 }
 
-                Console.WriteLine("Даракон нанес вам "+damageDragon+" урона.");
-                hpUser -= damageDragon;
-                Console.WriteLine("Теперь у вас "+ hpUser + " hp");
+                Console.WriteLine($"Дракон нанес вам {damageDragon} урона.");
+                hpPlayer -= damageDragon;
+                Console.WriteLine($"Теперь у вас {hpPlayer} hp");
 
-                if (hpUser <= 0) 
+                if (hpPlayer <= 0) 
                 {
                     Console.WriteLine("О чудо ангелы помогают вам, и исцеляют вас.");
-                    hpUser = 100;
+                    hpPlayer = 100;
                 }
 
                 Console.WriteLine("Что вы делете дальше? ");
