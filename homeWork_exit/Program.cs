@@ -11,53 +11,64 @@ namespace homeWork_exit
     {
         static void Main(string[] args)
         {
+            const string CommandDamage = "1";
+            const string CommandHeal = "2";
+            const string CommandExit = "3";
+
             int hpUser = 100;
             int damageUser = 10;
             int healUser = 10;
             int hpDragon = 1000;
             int damageDragon = 5;
             string inputUserText;
+            bool isExit = false;
 
             Console.WriteLine("Спустившись в подземелье вы видите дракона. Ваши действия: ");
-            Console.WriteLine("Dm - нанести урон даракону равный 5\nHl - излечиться на 10 hp\nexit - убежать");
+            Console.WriteLine($"{CommandDamage} - нанести урон даракону равный {damageDragon}\n" +
+                $"{CommandHeal} - излечиться на {healUser} hp\n" +
+                $"{CommandExit} - убежать");
 
-            bool userWantLeave = false;
-            while (hpDragon >=0) 
+            while (hpDragon >= 0) 
             {
                 inputUserText = Console.ReadLine();
+
                 switch (inputUserText) 
                 {
-                    case "Dm":
+                    case CommandDamage:
                         hpDragon -= damageUser;
                         Console.WriteLine("Вы нанесли "+ damageUser+ " теперь у дракона  "+ hpDragon + "hp");
                         break;
-                    case "Hl":
+                    case CommandHeal:
                         hpUser += healUser;
                         Console.WriteLine("Вы исцелили себя на " + healUser + " теперь у вас " + hpUser + " hp");
                         break;
-                    case "exit":
+                    case CommandExit:
                         Console.WriteLine("Вы трус");
-                        userWantLeave = true;
+                        isExit = true;
                         break;
                     default:
                         Console.WriteLine("Вы пытаетесь что-то сделать, но поитогу ударяете сами себя");
                         hpUser -= damageUser;
-                        Console.WriteLine("Теперь у вас " +hpUser+ " hp");
+                        Console.WriteLine($"Теперь у вас " +hpUser+ " hp");
                         break;
                 }
-                if (userWantLeave == true) 
+
+                if (isExit == true) 
                 {
                     Console.ReadKey();
                     break;
                 }
+
                 Console.WriteLine("Даракон нанес вам "+damageDragon+" урона.");
                 hpUser -= damageDragon;
                 Console.WriteLine("Теперь у вас "+ hpUser + " hp");
+
                 if (hpUser <= 0) 
                 {
                     Console.WriteLine("О чудо ангелы помогают вам, и исцеляют вас.");
                     hpUser = 100;
                 }
+
                 Console.WriteLine("Что вы делете дальше? ");
             }
         }
